@@ -28,4 +28,4 @@ class Mark(models.Model):
 
 
     def __str__ (self):
-    	return str(self.value)
+    	return "%d - %s - %s "%(self.value,self.subject,self.student)
