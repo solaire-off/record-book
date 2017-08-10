@@ -1,102 +1,10 @@
-<html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.0/css/bulma.min.css">
-    <title>Веб журнал</title>
-  </head>
-  <body>
-    <div class="container">
-      <nav class="navbar ">
-        <div class="navbar-brand ">
-          <div class="navbar-item" style="font-family: museo-slab,Georgia,Times New Roman,Times,serif;
-            font-weight: bold;font-size: 20px;">
-            <i class="fa fa-graduation-cap" style="color:#00b89c" aria-hidden="true"></i> Веб журнал
-          </div>
-          <a class="navbar-item is-hidden-desktop" href="https://github.com/solaire-off/record-book" target="_blank">
-          <span class="icon" style="color: #333;">
-          <i class="fa fa-github"></i>
-          </span>
-          </a>
-          <a class="navbar-item is-hidden-desktop" href="https://twitter.com/solaire_off" target="_blank">
-          <span class="icon" style="color: #55acee;">
-          <i class="fa fa-twitter"></i>
-          </span>
-          </a>
-          <div class="navbar-burger burger" data-target="navMenuExample">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-        <div id="navMenuExample" class="navbar-menu">
-          <div class="navbar-start">
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link  is-active" href="#">
-              Скачать
-              </a>
-              <div class="navbar-dropdown ">
-                <a class="navbar-item " href="#">
-                <i class="fa fa-file-pdf-o fa-fw" aria-hidden="true"></i> PDF
-                </a>
-                <a class="navbar-item " href="#">
-                <i class="fa fa-file-excel-o fa-fw" aria-hidden="true"></i> Exel
-                </a>
-                <a class="navbar-item " href="#">
-                <i class="fa fa-file-word-o fa-fw" aria-hidden="true"></i> Docx
-                </a>
-              </div>
-            </div>
-            <a class="navbar-item " href="#">
-            <span class="emoji">🎨</span>
-            Печать
-            </a>
-          </div>
-          <div class="navbar-end">
-            <a class="navbar-item is-hidden-desktop-only" href="https://github.com/solaire-off/record-book" target="_blank">
-            Github
-            </a>
-            <a class="navbar-item is-hidden-desktop-only" href="https://twitter.com/solaire_off" target="_blank">
-            Twitter
-            </a>
-            <div class="navbar-item">
-              <div class="field is-grouped">
-                <p class="control">
-                  <a class="tw-button button"
-                    data-social-network="Twitter"
-                    data-social-action="tweet"
-                    data-social-target="{{ request.get_host }}"
-                    target="_blank"
-                    href="https://twitter.com/intent/tweet?text=Веб журнал: удобное составление ежемесячной ведомости для всех&hashtags=#вебЖурнал&url={{ request.get_host }}&via=solaire_off">
-                  <span class="icon">
-                  <i class="fa fa-twitter"></i>
-                  </span>
-                  <span>
-                  Твитнуть
-                  </span>
-                  </a>
-                </p>
-                <p class="control">
-                  <a class="button is-primary" href="{% url 'logout' %}?next={% url 'home' %}">
-                  <span class="icon">
-                  <i class="fa fa-download"></i>
-                  </span>
-                  <span>Выход</span>
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </div>
-    <section class="section">
+{% extends 'journal/base.html' %} 
+
+{% block content %}
+<section class="section">
       <div class="columns">
         <div class="column is-3 is-offset-1">
         </div>
       </div>
-    </section>
-  </body>
-</html>
+</section>
+{% endblock %}
