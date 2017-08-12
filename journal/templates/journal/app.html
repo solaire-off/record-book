@@ -2,28 +2,30 @@
 
 {% block content %}
 	<div id="app">
-      <div class="columns">
-        <div class="column is-12">
-        		<table class="table is-bordered">
-        			<thead>
-        				<tr>
-        					<th>Учащиеся</th>	
-        					<th v-for="subject in subjects.results" v-html="subject.name"></th>
-        				</tr>
-        			</thead>
-        			<tbody>
-        				<tr v-for="student in students.results" >
-        					<td v-html="shortName(student)"></td>
-        					<th v-for="subject in subjects.results" >
-        						<span v-for="item in findMarks(student,subject)">[ item.value ] </span>
-        					</th>
-        				</tr>
-        			</tbody>
-        		</table>
-           		<button class="button" @click="fetchData">Обновить</button>
-        </div>
-      </div>
-  </div>
+	  <div class="columns">
+	    <div class="column is-12">
+	    		<table class="table is-bordered">
+	    			<thead>
+	    				<tr>
+	    					<th>Учащиеся</th>	
+	    					<th v-for="subject in subjects.results" v-html="subject.name"></th>
+	    					<th>Отметка</th>
+	    				</tr>
+	    			</thead>
+	    			<tbody>
+	    				<tr v-for="student in students.results" >
+	    					<td v-html="shortName(student)"></td>
+	    					<th v-for="subject in subjects.results" >
+	    						<span v-for="item in findMarks(student,subject)">[item.value] </span>
+	    					</th>
+	    					<th v-html="averageMark(student)"></th>
+	    				</tr>
+	    			</tbody>
+	    		</table>
+	       		<button class="button" @click="fetchData">Обновить</button>
+	    </div>
+	  </div>
+	</div>
 {% endblock %}
 
 {% block footer %}
@@ -60,8 +62,20 @@ var App = new Vue({
 		},
 		findMarks : function(student,subject){
 			return this.marks.results.filter(item =>{
-					return item.student == student.url && item.subject == subject.url;
+					return item.student === student.url && item.subject === subject.url;
 			})
+		},
+		averageMark : function(student){
+			var sum = 0;
+			var arr = this.marks.results.filter(item =>{
+				return item.student === student.url;
+			});
+			var count = arr.length;
+			arr.forEach(function(item) {
+				sum += item.value; 
+				});
+			var result = (sum / count);
+			return isNaN(result) ? "-" : result; 
 		}
 	}
 })
