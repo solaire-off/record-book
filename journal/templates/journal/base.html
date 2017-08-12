@@ -93,14 +93,17 @@
           </div>
         </div>
       </nav>
-    </div>
+    
     {% block content %}
     {% endblock %}
-
+    </div>
     {% if debug %}
     <script src="https://unpkg.com/vue@2.4.2"></script>
     {% else %}
     <script src="{% static "js/vue.min.js" %}"></script>
     {% endif %}
+    <script src="{% static "js/vue-resource.js" %}"></script>
+    {% block footer %}
+    {% endblock %}
   </body>
 </html>
