@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static "css/bulma.min.css" %}">
-    <title>Веб журнал</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <title>Веб-журнал</title>
   </head>
   <body>
     <div class="container">
       <nav class="navbar ">
-        <div class="navbar-brand ">
-          <div class="navbar-item" style="font-family: museo-slab,Georgia,Times New Roman,Times,serif;
-            font-weight: bold;font-size: 20px;">
-            <i class="fa fa-graduation-cap" style="color:#00b89c" aria-hidden="true"></i> Веб журнал
+        <div class="navbar-brand">
+          <div class="navbar-item" style="color:black">
+            <i class="fa fa-graduation-cap" style="color:#00b89c;font-size:25px" aria-hidden="true"></i> Веб-журнал
           </div>
           <a class="navbar-item is-hidden-desktop" href="https://github.com/solaire-off/record-book" target="_blank">
           <span class="icon" style="color: #333;">
@@ -33,35 +33,48 @@
             <span></span>
           </div>
         </div>
-        <div id="navMenuExample" class="navbar-menu">
+        <div class="navbar-menu">
           <div class="navbar-start">
             <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link  is-active" href="#">
-              Скачать
-              </a>
+              <div class="navbar-link is-active" href="#">
+              Добавить
+              </div>
               <div class="navbar-dropdown ">
                 <a class="navbar-item " href="#">
-                <i class="fa fa-file-pdf-o fa-fw" aria-hidden="true"></i> PDF
+                Учащегося
                 </a>
                 <a class="navbar-item " href="#">
-                <i class="fa fa-file-excel-o fa-fw" aria-hidden="true"></i> Exel
-                </a>
-                <a class="navbar-item " href="#">
-                <i class="fa fa-file-word-o fa-fw" aria-hidden="true"></i> Docx
+                Предмет
                 </a>
               </div>
             </div>
-            <a class="navbar-item " href="#">
-            <span class="emoji">🎨</span>
-            Печать
-            </a>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <div class="navbar-link  is-active" href="#">
+              Отчистить
+              </div>
+              <div class="navbar-dropdown ">
+                <a class="navbar-item " href="#">
+                Учащихся
+                </a>
+                <a class="navbar-item " href="#">
+                Предметы
+                </a>
+                <a class="navbar-item " href="#">
+                Оценки
+                </a>
+              </div>
+            </div>
           </div>
           <div class="navbar-end">
             <a class="navbar-item is-hidden-desktop-only" href="https://github.com/solaire-off/record-book" target="_blank">
-            Github
+            <span class="icon" style="color: #333;">
+            <i class="fa fa-github"></i>
+            </span>
             </a>
             <a class="navbar-item is-hidden-desktop-only" href="https://twitter.com/solaire_off" target="_blank">
-            Twitter
+            <span class="icon" style="color: #55acee;">
+            <i class="fa fa-twitter"></i>
+            </span>
             </a>
             <div class="navbar-item">
               <div class="field is-grouped">
@@ -81,9 +94,17 @@
                   </a>
                 </p>
                 <p class="control">
-                  <a class="button is-primary" href="{% url 'logout' %}?next={% url 'home' %}">
+                  <a class="button is-primary" href="#">
                   <span class="icon">
                   <i class="fa fa-download"></i>
+                  </span>
+                  <span>Скачать</span>
+                  </a>
+                </p>
+                <p class="control">
+                  <a class="button is-danger" href="{% url 'logout' %}?next={% url 'home' %}">
+                  <span class="icon">
+                  <i class="fa fa-sign-out"></i>
                   </span>
                   <span>Выход</span>
                   </a>
@@ -103,6 +124,7 @@
     <script src="{% static "js/vue.min.js" %}"></script>
     {% endif %}
     <script src="{% static "js/vue-resource.js" %}"></script>
+    <script src="{% static "js/app.js" %}"></script>
     {% block footer %}
     {% endblock %}
   </body>

@@ -1,18 +1,20 @@
+{% load staticfiles %}
+<!DOCTYPE html>
 <html lang="ru">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.0/css/bulma.min.css">
-    <title>Веб журнал</title>
+    <link rel="stylesheet" href="{% static "css/bulma.min.css" %}">
+    <title>Веб-журнал</title>
   </head>
   <body>
     <section class="section">
       <div class="columns">
         <div class="column is-3 is-offset-1">
           <h1 class="title">
-            Веб журнал
+            Веб-журнал
           </h1>
           <p class="subtitle">
             Пожалуйста, войдите в систему!
@@ -22,7 +24,7 @@
             <p class="control has-icons-left has-icons-right">
               <input class="input" type="text" name="username" placeholder="Имя">
               <span class="icon is-small is-left">
-              <i class="fa fa-envelope"></i>
+              <i class="fa fa-user"></i>
               </span>
               <!-- <span class="icon is-small is-right">
                 <i class="fa fa-check"></i>

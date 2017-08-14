@@ -1,0 +1,16 @@
+.tw-button{
+	background-color: #55acee;
+    color: white !important;
+    border-color: transparent !important;
+}
+.tw-button:hover {
+    background-color: #49a6ed;
+    color: white;
+}
+.tw-button:active, .tw-button:focus {
+    background-color: #3ea1ec;
+    color: white;
+}
+div.navbar-link{
+	cursor: pointer;
+}
