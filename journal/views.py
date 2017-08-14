@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .models import Student, Subject, Mark
 from rest_framework import viewsets
@@ -29,14 +29,21 @@ class MarkViewSet(viewsets.ModelViewSet):
 
 def home(request):
 	context = {}
-	if request.method == 'POST':
-		username = request.POST['username']
-		password = request.POST['password']
-		user = authenticate(username=username, password=password)
-		if user is not None:
-			if user.is_active:
-				login(request, user)
 	if request.user.is_authenticated():
 		return render(request,"journal/app.html",context)
-	return render(request,"journal/login.html",context)
+	return redirect('sign_in')
 
+def sign_in(request):
+    context = {}
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect('home')
+        context = {
+                "error" : True
+            }   
+    return render(request,"journal/login.html",context)

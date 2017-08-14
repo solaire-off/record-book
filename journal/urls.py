@@ -18,5 +18,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.home, name="home"),
+    url(r'^login/$', views.sign_in, name="sign_in"),
    
 ]

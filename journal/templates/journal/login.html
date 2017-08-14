@@ -16,8 +16,12 @@
           <h1 class="title">
             Веб-журнал
           </h1>
-          <p class="subtitle">
+          <p class="subtitle is-dange">
+            {% if error %}
+            Введен неправильный логин или пароль! Попробуйте снова.
+            {% else %}
             Пожалуйста, войдите в систему!
+            {% endif %}
           </p>
           <form  method="POST">{% csrf_token %}
           <div class="field">
