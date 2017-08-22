@@ -20,8 +20,16 @@
 	    					</th>
 	    					<th v-html="averageMark(student)"></th>
 	    				</tr>
+	    				<tr>
+	    					<td :colspan="subjects.count+1">Итого</td>
+	    					<td v-html="groupMark()"></td>
+	    				</tr>
 	    			</tbody>
 	    		</table>
+	    		<div class="content">
+		    		<p>Кол-во учащихся без 0,1,2,3 : <span></span> %<br/>
+		    		   Кол-во учащихся на 6,7,8,9 : <span></span> %</p>
+	    		</div>
 	       		<button class="button" @click="fetchData">Обновить</button>
 	    </div>
 	  </div>

@@ -5,6 +5,7 @@ var App = new Vue({
 		students : [],
 		marks : [],
 		subjects : [],
+		averageMarks : [],
 	},
 	created : function(){
 		this.fetchData();
@@ -43,8 +44,23 @@ var App = new Vue({
 				sum += item.value; 
 				});
 			var result = (sum / count);
-			return isNaN(result) ? "-" : result; 
+			if (!isNaN(result)){
+				this.averageMarks.push(result);
+				return result;
+			}
+			return "-"
+		},
+		groupMark : function(){
+			var sum = 0;
+			var arr = this.averageMarks;
+			var count = arr.length;
+			arr.forEach(function(item) {
+				sum += item; 
+				});
+			var mark = sum / count; 
+			return mark;
 		}
+
 	}
 })
 
