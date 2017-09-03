@@ -16,13 +16,13 @@
 	    				<tr v-for="student in students.results" >
 	    					<td v-html="shortName(student)"></td>
 	    					<th v-for="subject in subjects.results" >
-	    						<span v-for="item in findMarks(student,subject)">[item.value] </span>
+	    					<!--	<span v-for="item in findMarks(student,subject)">[item.value] </span> -->
 	    					</th>
-	    					<th v-html="averageMark(student)"></th>
+	    					<th></th>
 	    				</tr>
 	    				<tr>
 	    					<td :colspan="subjects.count+1">Итого</td>
-	    					<td v-html="groupMark()"></td>
+	    					<td></td>
 	    				</tr>
 	    			</tbody>
 	    		</table>
