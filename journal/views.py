@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .models import Student, Subject, Mark
-from rest_framework import viewsets
+from rest_framework import viewsets,generics
 from .serializers import StudentSerializer, SubjectSerializer, MarkSerializer
 
 
@@ -20,12 +20,23 @@ class SubjectViewSet(viewsets.ModelViewSet):
     queryset = Subject.objects.all()
     serializer_class = SubjectSerializer
 
-class MarkViewSet(viewsets.ModelViewSet):
+class MarkViewSet(generics.ListAPIView):
     """
     API endpoint that allows marks to be viewed or edited.
     """
-    queryset = Mark.objects.all()
+    model = Mark
     serializer_class = MarkSerializer
+
+    def get_queryset(self):
+        queryset = Mark.objects.all()
+        student = self.request.query_params.get('student')
+        subject = self.request.query_params.get('subject')
+
+        if student:
+            queryset = queryset.filter(student_id=student)
+        if subject:
+            queryset = queryset.filter(subject_id=subject)
+        return queryset
 
 def home(request):
 	context = {}

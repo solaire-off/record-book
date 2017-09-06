@@ -16,7 +16,7 @@
 	    				<tr v-for="student in students.results" >
 	    					<td v-html="shortName(student)"></td>
 	    					<th v-for="subject in subjects.results" >
-	    					<!--	<span v-for="item in findMarks(student,subject)">[item.value] </span> -->
+	    						<span v-for="mark in getMarks(student,subject)">[mark.value] </span>
 	    					</th>
 	    					<th></th>
 	    				</tr>
@@ -29,7 +29,7 @@
 	    		<div class="content">
 		    		<p>Кол-во учащихся без 0,1,2,3 : <span></span> %<br/>
 		    		   Кол-во учащихся на 6,7,8,9 : <span></span> %</p>
-	    		</div>
+		    	</div>
 	       		<button class="button" @click="fetchData">Обновить</button>
 	    </div>
 	  </div>

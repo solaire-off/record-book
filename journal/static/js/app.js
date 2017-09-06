@@ -12,55 +12,52 @@ var App = new Vue({
 	},
 	methods :{
 		fetchData : function(){
-			this.$http.get("/marks/?format=json")
-				.then(response => {
-					this.marks = response.data
-				})
 			this.$http.get("/students/?format=json")
 				.then(response => {
 					this.students = response.data
 				})
 			this.$http.get("/subjects/?format=json")
 				.then(response =>{
-					this.subjects = response.data
+					this.subjects = response.data;
+					this.fetchMarks();
+					
 				})
+		},
+		fetchMarks: function(){
+			var self = this;
+			self.students.results.forEach(function(student) {
+				self.subjects.results.forEach(function(subject) {
+					var url = "/marks/?student="+student.id+"&subject="+subject.id;
+					self.$http.get(url)
+						.then(function(response)  {
+							if (response.data.count){
+								var key = student.id+'_'+subject.id;
+								var data = response.data.results;
+								self.marks.push({
+									key: key ,
+									value: data
+									});
+								
+							}											
+						});
+					});
+				});
 			
 		},
 		shortName : function(student){
 			return student.lastname+" "+ student.firstname[0]+ ". " + student.patronymic[0]+"."
 		},
-		findMarks : function(student,subject){
-			return this.marks.results.filter(item =>{
-					return item.student === student.url && item.subject === subject.url;
-			})
-		},
-		averageMark : function(student){
-			var sum = 0;
-			var arr = this.marks.results.filter(item =>{
-				return item.student === student.url;
+		getMarks : function(student,subject){
+			var key = student.id+'_'+subject.id;
+			var search = this.marks.filter(function( obj ) {
+  				return obj.key == key;
 			});
-			var count = arr.length;
-			arr.forEach(function(item) {
-				sum += item.value; 
-				});
-			var result = (sum / count);
-			if (!isNaN(result)){
-				this.averageMarks.push(result);
-				return result;
-			}
-			return "-"
-		},
-		groupMark : function(){
-			var sum = 0;
-			var arr = this.averageMarks;
-			var count = arr.length;
-			arr.forEach(function(item) {
-				sum += item; 
-				});
-			var mark = sum / count; 
-			return mark;
+			var result = [];
+			search.forEach(function(object) {
+				result.push(object.value)
+			});
+			return result[0];		
 		}
-
-	}
+	},
 })
 

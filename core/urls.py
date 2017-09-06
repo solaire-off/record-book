@@ -8,7 +8,7 @@ from journal.views import StudentViewSet, SubjectViewSet, MarkViewSet
 router = routers.DefaultRouter()
 router.register(r'students', StudentViewSet)
 router.register(r'subjects', SubjectViewSet)
-router.register(r'marks', MarkViewSet)
+
 
 
 
@@ -18,5 +18,6 @@ urlpatterns = [
     url(r'',include('journal.urls')),
     url(r'', include('django.contrib.auth.urls'), name="logout"),
     url(r'^', include(router.urls)),
+    url(r'^marks/', MarkViewSet.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
