@@ -4,7 +4,7 @@
 	<div id="app">
 	  <div class="columns">
 	    <div class="column is-12">
-	    		<table class="table is-bordered">
+	    		<table class="table is-fullwidth  is-bordered">
 	    			<thead>
 	    				<tr>
 	    					<th>Учащиеся</th>	
@@ -16,7 +16,7 @@
 	    				<tr v-for="student in students.results" >
 	    					<td v-html="shortName(student)"></td>
 	    					<th v-for="subject in subjects.results" >
-	    						<span v-for="mark in getMarks(student,subject)">[mark.value] </span>
+	    						<p v-for="value in getMarks(student,subject)"><span v-for="item in value.marks"> [item.value] </span></p>
 	    					</th>
 	    					<th></th>
 	    				</tr>

@@ -19,8 +19,8 @@ var App = new Vue({
 			this.$http.get("/subjects/?format=json")
 				.then(response =>{
 					this.subjects = response.data;
+					this.marks = [];
 					this.fetchMarks();
-					
 				})
 		},
 		fetchMarks: function(){
@@ -31,32 +31,24 @@ var App = new Vue({
 					self.$http.get(url)
 						.then(function(response)  {
 							if (response.data.count){
-								var key = student.id+'_'+subject.id;
 								var data = response.data.results;
 								self.marks.push({
-									key: key ,
-									value: data
+									"student_id": student.id,
+									"subject_id": subject.id,
+									"marks" : data,
 									});
-								
 							}											
 						});
 					});
 				});
-			
 		},
 		shortName : function(student){
 			return student.lastname+" "+ student.firstname[0]+ ". " + student.patronymic[0]+"."
 		},
 		getMarks : function(student,subject){
-			var key = student.id+'_'+subject.id;
-			var search = this.marks.filter(function( obj ) {
-  				return obj.key == key;
+			return this.marks.filter(function( obj ) {
+  				return obj.student_id === student.id && obj.subject_id === subject.id;
 			});
-			var result = [];
-			search.forEach(function(object) {
-				result.push(object.value)
-			});
-			return result[0];		
 		}
 	},
 })
